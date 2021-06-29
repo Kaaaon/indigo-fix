@@ -1,7 +1,9 @@
 # original by gowixx i just removed all the unnecessary shit cuz his worked for roughly 10% of people
 # the code here is pretty trash i just wanted to make it as simple as possible cuz gowixx always overcomplicates stuff
 # dont let this be a reflection on me as a dev lol i hate python
+import base64
 import ctypes
+import discord
 import discum
 import json
 import os
@@ -51,6 +53,20 @@ async def on_connect():
     changetitle('Indigo | Developed by Gowixx | Kaon Patch')
 
 
+@client.command(name='help', description='Show help menu', usage='')
+async def help(ctx):
+    embed = discord.Embed(
+        title='Help',
+        description=f'''
+        Arguments in `[]` are required, arguments in `()` are optional.
+
+        **`{prefix}`massmention(amount)** » Mention lots of users in a guild
+        **`{prefix}`whattimeisit (amount)** » Alias for Mass mention''',
+        color=embed_color
+    )
+    await ctx.message.edit(content='', embed=embed)
+
+
 @client.command(name="massmention", description="Ghost mention every user in the guild that can see the channel",
                 usage="", aliases=['WhatTimeIsIt, massping'])
 @commands.guild_only()
@@ -92,12 +108,14 @@ async def massmention(ctx, amount: int = 1):
                 # Would use delete_after but this looks better
                 await m.delete()
                 print(f'{Fore.LIGHTBLUE_EX}[Indigo] {Fore.RESET}Deleted message')
-                print(f'{Fore.LIGHTBLUE_EX}[Indigo] {Fore.RESET}Done :)')
-                print(f'{Fore.LIGHTBLUE_EX}[Indigo] {Fore.RESET}Clearing in 5s')
             except:
                 print(f'{Fore.LIGHTBLUE_EX}[Indigo] {Fore.RESET}Failed to delete message')
     # Ask who pinged you and delete the message instantly to look like you're innocent and make it unsnipable
-    await ctx.send("who pinged me", delete_after=0)
+    whopinged = await ctx.send("who pinged me")
+    # had to it this way as delete_after doesnt work well with time.sleep
+    await whopinged.delete()
+    print(f'{Fore.LIGHTBLUE_EX}[Indigo] {Fore.RESET}Done :)')
+    print(f'{Fore.LIGHTBLUE_EX}[Indigo] {Fore.RESET}Clearing in 5s')
     time.sleep(5)
     os.system('cls')
     printmain()
@@ -105,5 +123,6 @@ async def massmention(ctx, amount: int = 1):
 
 try:
     client.run(token, bot=False)
-except:
+except Exception as e:
     print("Invalid token or smth fucked up when logging in")
+    print(e)
