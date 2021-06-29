@@ -1,44 +1,24 @@
+# Indigo (fix)
+Fix for Gowixx's "Indigo SB" (which is really just a massmention he released bcuz it doesn't work with our compiler/obfuscation, but it's pretty cool still)
 
-# Indigo Selfbot
+Also go buy Okuru (our fully featured selfbot) at https://okuru.xyz and join the discord (NOT FOR TESTING INDIGO IN)
 
-Free OpenSource selfbot, Premium version can be found at https://okuru.xyz (5$.)
+Im not forking Gowixx's repo for this cuz theres a bunch of code in here that he'll hate lol
 
-## INFO
-Some people have been using the `discord.py` module, we've switched from this to `discord.py-self` as it has better support.
-To install `discord.py-self` do the following:
-```bash
-pip[3] install -U discord.py-self
-```
-
-## Usage
-
-```bash
-python[3] main.py
-```
-## Installation
-
-To install you can either use git, or download the zip directly \
-**If you are using git do the following**:
-```bash
-git clone https://github.com/Gowixx/indigo-selfbot.git
-```
----
-```bash
-cd indigo-selfbot
-```
+## How do install
+Replace the token in config.json with yours then CD into the directory and run:
 ```bash
 pip install -r requirements.txt
 ```
 ```bash
-python[3] main.py
+python main.py
 ```
 
-## Common Errors
-Sometimes you may get the following error: 
-```bash
-Connection Dropped. Retrying in 10 seconds.
-```
-This means that your account has been ratelimited, to fix it you have a couple days, or use another account. This has nothing to do with your IP Adress.
+## Issues
+If you need any help join the Okuru discord, but some common issues are:
+- You haven't installed python lol
+- You haven't got python added to path
+- You haven't got pip installed (Re-run python installer and do custom installation)
 
-## Requests
-Just create an issue if you want a feature request
+- "Connection Dropped. Retrying in 10 seconds."
+This means that your account has been ratelimited, to fix it you have to wait anywhere from 2 minutes to a couple days, or use another account. This has nothing to do with your IP adress.
